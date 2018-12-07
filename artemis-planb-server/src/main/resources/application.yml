@@ -1,0 +1,35 @@
+# Servlet Container & Health Setup
+server:
+  address: 0.0.0.0
+management:
+  server:
+    address: 0.0.0.0
+    port: 8081
+  endpoint:
+    health:
+      enabled: true
+    
+# Spring Boot
+spring:
+  datasource:
+    url: jdbc:h2:./target/data
+    username: sa
+#    password: Abcd1234
+    schema: classpath:sql/schema.sql
+    schemaUsername: ${spring.datasource.username}
+#    schemaPassword: ${spring.datasource.password}
+    initializationMode: ALWAYS
+
+# Camel Spring Boot
+camel:
+  springboot:
+    name: ArtemisPlanBServer
+    #tracing: true
+  
+# Logging
+logging:
+  config: classpath:logback.xml
+  level:
+    #org.apache.camel: DEBUG
+    org.apache.activemq: DEBUG
+    
